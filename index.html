@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
+    <title>Document Management</title>
+</head>
+<body>
+    <header>
+        <h1>Document Management</h1>
+    </header>
+    <nav>
+        <ul class="tabs">
+            <li class="tab active" data-tab="attendance">Attendance</li>
+            <li class="tab" data-tab="minutes">Minutes of Meeting</li>
+            <li class="tab" data-tab="checklist">Check List</li>
+            <li class="tab" data-tab="planning">Planning & Achievement</li>
+            <li class="tab" data-tab="reports">Report</li>
+            <li class="tab" data-tab="books">Books</li>
+            <li class="tab" data-tab="articles">Articles</li>
+            <li class="tab" data-tab="self-assessment">Self Assessment</li>
+        </ul>
+    </nav>
+
+    <div class="tab-section active" id="attendance">
+        <h2>Attendance</h2>
+        <ul id="attendanceFileList"></ul>
+    </div>
+    <div class="tab-section" id="minutes">
+        <h2>Minutes of Meeting</h2>
+        <ul id="minutesFileList"></ul>
+    </div>
+    <div class="tab-section" id="checklist">
+        <h2>Check List</h2>
+        <ul id="checklistFileList"></ul>
+    </div>
+    <div class="tab-section" id="planning">
+        <h2>Planning & Achievement</h2>
+        <ul id="planningFileList"></ul>
+    </div>
+    <div class="tab-section" id="reports">
+        <h2>Reports</h2>
+        <ul id="reportsFileList"></ul>
+    </div>
+    <div class="tab-section" id="books">
+        <h2>Books</h2>
+        <ul id="booksFileList"></ul>
+    </div>
+    <div class="tab-section" id="articles">
+        <h2>Articles</h2>
+        <ul id="articlesFileList"></ul>
+    </div>
+    <div class="tab-section" id="self-assessment">
+        <h2>Self Assessment</h2>
+        <ul id="selfAssessmentFileList"></ul>
+    </div>
+
+    <script src="switch.js"></script>
+    <script src="fileFetcher.js"></script>
+</body>
+</html>

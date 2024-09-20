@@ -1,0 +1,50 @@
+body {
+    font-family: 'Tajawal', sans-serif;
+    background: #f0f4f9;
+    color: #2f4f4f;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+header {
+    background-color: #004d40;
+    padding: 20px;
+    color: white;
+    border-bottom: 5px solid #d4af37;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+.tab {
+    padding: 15px 20px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.tab.active {
+    background-color: #d4af37;
+    color: #004d40;
+}
+
+.tab-section {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tab-section.active {
+    display: block;
+}
+
+/* Additional styles for responsiveness, etc. */
