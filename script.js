@@ -1,46 +1,46 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const tabs = document.querySelectorAll('.tab');
-    const tabSections = document.querySelectorAll('.tab-section');
+const repoApiUrl = 'https://api.github.com/repos/NightmareShadow4Exploit/web/contents/';
 
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            tabs.forEach(t => t.classList.remove('active'));
-            tabSections.forEach(section => section.classList.remove('active'));
+// Fetch files for each section
+const sections = [
+    { folder: 'Attendance', listId: 'attendanceFileList' },
+    { folder: 'MinutesOfMeeting', listId: 'minutesFileList' },
+    { folder: 'CheckList', listId: 'checklistFileList' },
+    { folder: 'PlanningAchievement', listId: 'planningFileList' },
+    { folder: 'Reports', listId: 'reportsFileList' },
+    { folder: 'Books', listId: 'booksFileList' },
+    { folder: 'Articles', listId: 'articlesFileList' },
+    { folder: 'SelfAssessment', listId: 'selfAssessmentFileList' },
+];
 
-            tab.classList.add('active');
-            const tabId = tab.getAttribute('data-tab');
-            document.getElementById(tabId).classList.add('active');
+// Fetch files for each section
+sections.forEach(section => fetchFiles(section.folder, section.listId));
 
-            fetchFiles(tabId);
-        });
-    });
-
-    // Initial fetch for the first tab
-    fetchFiles('attendance');
-});
-
-function fetchFiles(folder) {
-    const apiUrl = `https://api.github.com/repos/NightmareShadow4Exploit/Papa/contents/${folder}`;
-
-    fetch(apiUrl)
-        .then(response => response.json())
+// Fetch files from GitHub
+function fetchFiles(folder, listId) {
+    fetch(`${repoApiUrl}${folder}`)
+        .then(response => {
+            if (!response.ok) throw new Error('Failed to fetch files: ' + response.statusText);
+            return response.json();
+        })
         .then(data => {
-            const fileList = document.getElementById(folder);
-            fileList.innerHTML = ''; // Clear previous list
+            const fileList = document.getElementById(listId);
+            fileList.innerHTML = ''; // Clear previous file list
 
             data.forEach(file => {
-                if (file.type === 'file' && (file.name.endsWith('.xlsx') || file.name.endsWith('.pdf'))) {
+                if (file.type === 'file' && (file.name.endsWith('.pdf') || file.name.endsWith('.xlsx'))) {
                     const listItem = document.createElement('li');
 
+                    // Create the file link
                     const fileLink = document.createElement('a');
                     fileLink.href = file.download_url;
                     fileLink.textContent = file.name;
-                    fileLink.target = '_blank';
+                    fileLink.target = '_blank'; // Open in a new tab
+                    fileLink.rel = 'noopener noreferrer'; // For security reasons
 
                     listItem.appendChild(fileLink);
                     fileList.appendChild(listItem);
                 }
             });
         })
-        .catch(error => console.error('Error fetching files:', error));
+        .catch(error => console.error('Error fetching file list:', error));
 }
